@@ -11,3 +11,5 @@ Casio FX-9750Giii
 Casio FX-CG50 PRIZM
 
 Python 3.10
+
+TI-nSpire CX II CAS (but you must remove the "math." leader from some functions)
