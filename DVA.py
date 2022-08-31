@@ -33,7 +33,7 @@ def blanker():
 
 def selector():
     print("Dease Vector")
-    print("Accelerator: v0.2a")
+    print("Accelerator: v0.2b")
     print(" ")
     print("[1] 2 Vectors") 
     print("[2] Vec. Amplifier")
