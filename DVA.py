@@ -82,7 +82,8 @@ def vectoramplifier():
     Ck=float(input("k= "))
     mC=float(math.sqrt(abs(Ci*Ci)+abs(Cj*Cj)+abs(Ck*Ck)))
     unvC=[Ci/mC,Cj/mC,Ck/mC]
-    print(unvC)
+    displunvC=[round(x,3) for x in unvC]
+    print(displunvC)
     print("Input Scalar Coeff.")
     scalC=float(input("Scalar= "))
     tunvC = [round((scalC*x),3) for x in unvC]
