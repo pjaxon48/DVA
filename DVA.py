@@ -61,7 +61,7 @@ def twovectors():
     AdB=float(Ai*Bi+Aj*Bj+Ak*Bk)
     mAmB=float(mA*mB)
     unvA=[round(Ai/mA,3),round(Aj/mA,3),round(Ak/mA,3)]
-    unvB=[round(Bi/mB,3),round(Bj/mA,3),round(Bk/mB,3)]
+    unvB=[round(Bi/mB,3),round(Bj/mB,3),round(Bk/mB,3)]
     AcB=[round(Aj*Bk-Ak*Bj,3),round(Ak*Bi-Ai*Bk,3),round(Ai*Bj-Aj*Bi,3)]
     print("magn.A= ",round(mA,3))
     print("magn.B= ",round(mB,3))
