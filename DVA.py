@@ -22,6 +22,13 @@ def waiter():
     input("EXE to cont.")
     return
 
+def rounder(roundme):
+    # Yes, this sucks. But it should work on any MicroPython calculator.
+    roundme = roundme * 1000
+    roundme = float(int(roundme))
+    roundme = roundme / 1000
+    return roundme
+
 def blanker():
     print(" ")
     print(" ")
@@ -33,7 +40,7 @@ def blanker():
 
 def selector():
     print("Dease Vector")
-    print("Accelerator: v0.2b")
+    print("Accelerator: v0.2c")
     print(" ")
     print("[1] 2 Vectors") 
     print("[2] Vec. Amplifier")
@@ -60,18 +67,15 @@ def twovectors():
     mB=float(math.sqrt(abs(Bi*Bi)+abs(Bj*Bj)+abs(Bk*Bk)))
     AdB=float(Ai*Bi+Aj*Bj+Ak*Bk)
     mAmB=float(mA*mB)
-    unvA=[format(Ai/mA,'.3f'),format(Aj/mA,'.3f'),format(Ak/mA,'.3f')]
-    unvB=[format(Bi/mB,'.3f'),format(Bj/mB,'.3f'),format(Bk/mB,'.3f')]
-    AcB=[format(Aj*Bk-Ak*Bj,'.3f'),format(Ak*Bi-Ai*Bk,'.3f'),format(Ai*Bj-Aj*Bi,'.3f')]
-    print("magn.A= ",format(mA,'.3f'))
-    print("magn.B= ",format(mB,'.3f'))
+    unvA=[rounder(Ai/mA),rounder(Aj/mA),rounder(Ak/mA)]
+    unvB=[rounder(Bi/mB),rounder(Bj/mB),rounder(Bk/mB)]
+    AcB=[rounder(Aj*Bk-Ak*Bj),rounder(Ak*Bi-Ai*Bk),rounder(Ai*Bj-Aj*Bi)]
+    print("magn.A= ",rounder(mA))
+    print("magn.B= ",rounder(mB))
     print("unit v.A= ",unvA[0],"i ",unvA[1],"j ",unvA[2],"k ")
     print("unit v.B= ",unvB[0],"i ",unvB[1],"j ",unvB[2],"k ")
-    #print("unit v.A= ",round(Ai/mA,3),"i ",round(Aj/mA,3),"j ",round(Ak/mA,3),"k")
-    #print("unit v.B= ",round(Bi/mB,3),"i ",round(Bj/mB,3),"j ",round(Bk/mB,3),"k")
-    print("A dot B= ",format(AdB,'.3f'))
+    print("A dot B= ",rounder(AdB))
     print("A x B= ",AcB[0],"i ",AcB[1],"j ",AcB[2],"k ")
-    #print("A cross B= ",round(Aj*Bk-Ak*Bj,3),"i ",round(Ak*Bi-Ai*Bk,3),"j ",round(Ai*Bj-Aj*Bi,3),"k")
     return
 
 def vectoramplifier():
@@ -82,11 +86,11 @@ def vectoramplifier():
     Ck=float(input("k= "))
     mC=float(math.sqrt(abs(Ci*Ci)+abs(Cj*Cj)+abs(Ck*Ck)))
     unvC=[Ci/mC,Cj/mC,Ck/mC]
-    displunvC=[format(x,'.3f') for x in unvC]
+    displunvC=[rounder(x) for x in unvC]
     print(displunvC)
     print("Input Scalar Coeff.")
     scalC=float(input("Scalar= "))
-    tunvC = [format((scalC*x),'.3f') for x in unvC]
+    tunvC = [rounder((scalC*x)) for x in unvC]
     print(" ")
     print("Amplified Vector=")
     print(tunvC[0],"i ",tunvC[1],"j ",tunvC[2],"k ")
@@ -94,4 +98,3 @@ def vectoramplifier():
 
 blanker()
 selector()
-
