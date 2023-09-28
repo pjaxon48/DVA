@@ -1,5 +1,5 @@
-#    Dease Stress Accelerator, a simple micropython-calculator-compatible tool to make
-#    stress transformation problems in Machine Design easier.
+#    Dease Vector Accelerator, a simple micropython-calculator-compatible tool to make
+#    basic vector algebra applications in Engineering Statics easier.
 #
 #    Copyright (C) 2023  Philip Dease
 #
@@ -53,54 +53,63 @@ def precise():
     return
 
 def selector():
-    print("Dease Stress")
-    print("Accelerator: v0.1")
+    print("Dease Vector")
+    print("Accelerator: v0.3a")
     print(" ")
-    print("[1] Princ. Stress") 
-    print("[2] Von Mises Eq")
+    print("[1] 2 Vectors") 
+    print("[2] Vec. Amplifier")
     choice=int(input("Choose (3 to quit)"))
     if  choice == 1:
-        princstress()
+        twovectors()
     if  choice == 2:
         vectoramplifier()
     if  choice == 3:
         quit()
     return 
 
-def princstress():
+def twovectors():
     precise()
     blanker()
-    print("Input Stresses:")
-    oxx=float(input("@xx= "))
-    oyy=float(input("@yy= "))
-    txy=float(input("txy= "))
-    oavg = (oxx+oyy)/2
-    tmax = pow((pow((oxx-oyy)/2,2)+pow(txy,2)),0.5)
-    o1 = oavg + tmax
-    o2 = oavg - tmax
-    ov = pow((pow(o1,2)+pow(o2,2)-(o1*o2)),0.5)
-    print(" ")
-    print("@1= ",rounder(o1))
-    print("@2= ",rounder(o2))
-    print("@avg= ",rounder(oavg))
-    print("tmax= ",rounder(tmax))
-    print("@v= ",rounder(ov))
+    print("Input First Vector")
+    Ai=float(input("Ai= "))
+    Aj=float(input("Aj= "))
+    Ak=float(input("Ak= "))
+    print("Input Second Vector")
+    Bi=float(input("Bi= "))
+    Bj=float(input("Bj= "))
+    Bk=float(input("Bk= ")) 
+    mA=float(pow((abs(Ai*Ai)+abs(Aj*Aj)+abs(Ak*Ak)),0.5))
+    mB=float(pow((abs(Bi*Bi)+abs(Bj*Bj)+abs(Bk*Bk)),0.5))
+    AdB=float(Ai*Bi+Aj*Bj+Ak*Bk)
+    mAmB=float(mA*mB)
+    unvA=[rounder(Ai/mA),rounder(Aj/mA),rounder(Ak/mA)]
+    unvB=[rounder(Bi/mB),rounder(Bj/mB),rounder(Bk/mB)]
+    AcB=[rounder(Aj*Bk-Ak*Bj),rounder(Ak*Bi-Ai*Bk),rounder(Ai*Bj-Aj*Bi)]
+    print("magn.A= ",rounder(mA))
+    print("magn.B= ",rounder(mB))
+    print("unit v.A= ",unvA[0],"i ",unvA[1],"j ",unvA[2],"k ")
+    print("unit v.B= ",unvB[0],"i ",unvB[1],"j ",unvB[2],"k ")
+    print("A dot B= ",rounder(AdB))
+    print("A x B= ",AcB[0],"i ",AcB[1],"j ",AcB[2],"k ")
     return
 
 def vectoramplifier():
     precise()
     blanker()
-    o1=float(input("@1= "))
-    o2=float(input("@2= "))
-    o3=float(input("@3= "))
-    oy =float(input("@y= "))
-    ov = pow((pow(o1,2)+pow(o2,2)+pow(o3,2)-(o1*o2)-(o2*o3)-(o3*o1)),0.5)
-    fos = oy/ov
+    print("Input Components")
+    Ci=float(input("i= "))
+    Cj=float(input("j= "))
+    Ck=float(input("k= "))
+    mC=float(pow((abs(Ci*Ci)+abs(Cj*Cj)+abs(Ck*Ck)),0.5))
+    unvC=[Ci/mC,Cj/mC,Ck/mC]
+    displunvC=[rounder(x) for x in unvC]
+    print(displunvC)
+    print("Input Scalar Coeff.")
+    scalC=float(input("Scalar= "))
+    tunvC = [rounder((scalC*x)) for x in unvC]
     print(" ")
-    print("Von Mises Equiv=")
-    print("@v/e=",rounder(ov))
-    print("F.O.S= ")
-    print("N= ",rounder(fos))
+    print("Amplified Vector=")
+    print(tunvC[0],"i ",tunvC[1],"j ",tunvC[2],"k ")
     return
 
 blanker()
