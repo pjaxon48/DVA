@@ -2,7 +2,7 @@
 
 A simple micropython-calculator-compatible tool to make basic vector algebra applications in Engineering Statics easier.
 
-Should work with any micropython-enabled calculator. Only uses the math library and basic python operators.
+Should work with any micropython-enabled calculator. Uses no external modules.
 
 Tested to work with:
 
@@ -10,6 +10,6 @@ Casio FX-9750Giii
 
 Casio FX-CG50 PRIZM
 
-Python 3.10
+TI-nSpire CX II CAS
 
-TI-nSpire CX II CAS (but you must remove the "math." leader from some functions)
+Python 3.10
