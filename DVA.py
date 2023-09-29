@@ -30,7 +30,12 @@ def rounder(rounder):
     rounder1 = int(rounder * factor)
     rounder2 = int(rounder) * factor
     rounder2 = rounder1 - rounder2
-    rounder1 = rounder1 // factor;
+    if rounder1 < 0:
+        rounder1 = abs(rounder1)
+        rounder1 = rounder1 // factor
+        rounder1 = 0 - rounder1
+    else:
+        rounder1 = rounder1 // factor
     roundme = str(rounder1) + "." + str(abs(rounder2))
     return roundme
 
