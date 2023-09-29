@@ -30,7 +30,12 @@ def rounder(rounder):
     rounder1 = int(rounder * factor)
     rounder2 = int(rounder) * factor
     rounder2 = rounder1 - rounder2
-    rounder1 = rounder1 // factor;
+    if rounder1 < 0:
+        rounder1 = abs(rounder1)
+        rounder1 = rounder1 // factor
+        rounder1 = 0 - rounder1
+    else:
+        rounder1 = rounder1 // factor
     roundme = str(rounder1) + "." + str(abs(rounder2))
     return roundme
 
@@ -77,7 +82,11 @@ def princstress():
     oavg = (oxx+oyy)/2
     tmax = pow((pow((oxx-oyy)/2,2)+pow(txy,2)),0.5)
     o1 = oavg + tmax
+    print("oavg ",oavg)
+    print("tmax ",tmax)
+    print("o1 ",o1)
     o2 = oavg - tmax
+    print("o2 ",o2)
     ov = pow((pow(o1,2)+pow(o2,2)-(o1*o2)),0.5)
     print(" ")
     print("@1= ",rounder(o1))
